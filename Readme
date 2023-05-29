@@ -1,0 +1,7 @@
+In a Three JS project we alway find 3 main components : 
+1. Scene
+Container that holds all of the objects, cameras and lights.
+Multiple camera types (main one is perspective camera)
+The first argument is field of view
+2. Camera
+3. Renderer
