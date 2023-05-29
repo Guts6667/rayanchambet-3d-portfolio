@@ -39,3 +39,15 @@
 .read-the-docs {
   color: #888;
 }
+
+
+.App{
+  position: absolute;
+  width: 100%;
+  height: auto;
+left: 0;
+top: 0;
+z-index: 99;
+display: grid;
+grid-template-columns: repeat(12, 1fr);
+}
