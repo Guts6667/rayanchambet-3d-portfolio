@@ -19,7 +19,6 @@ function App() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.position.setZ(30);
     renderer.render(scene, camera);
-
     const pointLight = new THREE.PointLight(0xffffff, 1);
     pointLight.position.set(20, 20, 20);
     const ambiantLight = new THREE.AmbientLight(0x1818181);
@@ -29,10 +28,8 @@ function App() {
     /**
      *  const gridHelper = new THREE.GridHelper(200, 50);
      */
-
     // create a torus and add it to the scene
     const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-
     // scene.add(gridHelper);
     const controls = new OrbitControls(camera, renderer.domElement);
     function addStar() {
@@ -55,7 +52,6 @@ function App() {
         color: color,
         emissive: emissiveColor,
       });
-
       const star = new THREE.Mesh(geometry, material);
       const [x, y, z] = Array(3)
         .fill()
@@ -63,11 +59,9 @@ function App() {
       star.position.set(x, y, z);
       scene.add(star);
     }
-
     Array(200).fill().forEach(addStar);
     const spaceTexture = new THREE.TextureLoader().load("background.jpeg");
     scene.background = spaceTexture;
-
     const moonTexture = new THREE.TextureLoader().load("2k_moon.jpg");
     const moon = new THREE.Mesh(
       new THREE.SphereGeometry(3, 32, 32),
@@ -76,12 +70,10 @@ function App() {
         normalMap: moonTexture,
       })
     );
-
     scene.add(moon);
     moon.position.z = -30;
     moon.position.setX(-15);
     moon.position.setY(-10);
-
     const marsTexture = new THREE.TextureLoader().load("2k_mars.jpg");
     const mars = new THREE.Mesh(
       new THREE.SphereGeometry(12, 32, 32),
@@ -96,8 +88,6 @@ function App() {
     mars.position.z = -55;
     mars.position.setX(25);
     mars.position.setY(25);
-
-    
     const saturnTexture = new THREE.TextureLoader().load("2k_saturn.jpg");
     const saturn = new THREE.Mesh(
       new THREE.SphereGeometry(25, 32, 32),
@@ -110,9 +100,8 @@ function App() {
     saturn.position.z = -100;
     saturn.position.setX(10);
     saturn.position.setY(-70);
-
-  const saturnRingTexture = new THREE.TextureLoader().load("2k_saturn_ring_alpha.png");
-  const saturnRing = new THREE.Mesh(
+    const saturnRingTexture = new THREE.TextureLoader().load("2k_saturn_ring_alpha.png");
+    const saturnRing = new THREE.Mesh(
     new THREE.RingGeometry(35, 40, 70),
     // Explain the values of the ring geometry above
     // The first value is the inner radius of the ring, the second value is the outer radius of the ring, and the third value is the number of segments that make up the ring
@@ -121,12 +110,11 @@ function App() {
       normalMap: saturnRingTexture,
       side: THREE.DoubleSide,
     })
-  );
-  scene.add(saturnRing);
-  saturnRing.position.z = -100;
-  saturnRing.position.setX(10);
-  saturnRing.position.setY(-70);
-
+    );
+    scene.add(saturnRing);
+    saturnRing.position.z = -100;
+    saturnRing.position.setX(10);
+    saturnRing.position.setY(-70);
     function moveCamera() {
       const t = document.body.getBoundingClientRect().top;
       saturn.rotation.x += 0.05;
@@ -135,7 +123,6 @@ function App() {
       saturnRing.rotation.x += 0.05;
       saturnRing.rotation.y += 0.075;
       saturnRing.rotation.z += 0.05;
-      
       moon.rotation.x += 0.05;
       moon.rotation.y += 0.075;
       moon.rotation.z += 0.05;
@@ -147,17 +134,14 @@ function App() {
       camera.position.y = t * -0.0002;
     }
     document.body.onscroll = moveCamera;
-
     function animate() {
       requestAnimationFrame(animate);
-
       saturn.rotation.x += 0.005;
       saturn.rotation.y -= 0.005;
       saturn.rotation.z += 0.005;
       saturnRing.rotation.x += 0.005;
       saturnRing.rotation.y -= 0.005;
       saturnRing.rotation.z += 0.005;
-
       moon.rotation.x += 0.005;
       moon.rotation.y -= 0.005;
       moon.rotation.z += 0.005;
